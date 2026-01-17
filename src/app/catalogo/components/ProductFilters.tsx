@@ -1,12 +1,15 @@
 'use client';
 
-import { ProductType, SortOptions, SortOrder } from '../types';
+import { ProductType, SortOptions } from '../types';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
-import { X } from 'lucide-react';
+import { Search } from 'lucide-react';
 
+interface ProductFiltersProps {
+  currentType: ProductType;
+  sortOptions: SortOptions;
+}
 
-const filterOptions: { value: ProductType; label: string }[] = [
+const PRODUCT_TYPES: { value: ProductType; label: string }[] = [
   { value: 'todos', label: 'Todos' },
   { value: 'laptops', label: 'Laptops' },
   { value: 'accessories', label: 'Accesorios' },
@@ -14,120 +17,80 @@ const filterOptions: { value: ProductType; label: string }[] = [
   { value: 'vendidos', label: 'Vendidos' },
 ];
 
-const sortOptions: { value: SortOrder; label: string }[] = [
-  { value: 'asc', label: 'Menor Precio ↓' },
-  { value: 'desc', label: 'Mayor Precio ↑' },
-];
-
-interface ProductFiltersProps {
-  currentType: ProductType;
-  sortOptions: SortOptions;
-}
-
-export default function ProductFilters({ currentType, sortOptions: currentSortOptions }: ProductFiltersProps) {
+export default function ProductFilters({ currentType, sortOptions }: ProductFiltersProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
 
-  const handleFilterChange = (type: ProductType) => {
+  const handleTypeChange = (type: ProductType) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (type !== 'todos') {
-      params.set('type', type);
-    } else {
-      params.delete('type');
-    }
-    // Reiniciamos la página a 0 al cambiar de filtro
-    params.set('page', '0');
+    params.set('type', type);
     router.push(`/catalogo?${params.toString()}`);
   };
 
-  const handleSortChange = (order: SortOrder) => {
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const [field, order] = event.target.value.split('-') as [SortOptions['field'], SortOptions['order']];
     const params = new URLSearchParams(searchParams.toString());
-    params.set('sortField', 'price');
+    params.set('sortField', field);
     params.set('sortOrder', order);
     router.push(`/catalogo?${params.toString()}`);
   };
 
-  const handleSearch = (e: React.FormEvent, reset: boolean = false) => {
-    e.preventDefault();
+  const handleSearch = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const search = formData.get('search') as string;
     const params = new URLSearchParams(searchParams.toString());
-    console.log(searchQuery);
-    
-    if (reset) {
-      params.delete('search');
+    if (search) {
+      params.set('search', search);
     } else {
-      params.set('search', searchQuery.trim());
+      params.delete('search');
     }
-    params.set('page', '0');
     router.push(`/catalogo?${params.toString()}`);
   };
 
-  const handleClearSearch = async(e: React.FormEvent) => {
-    e.preventDefault();
-    setSearchQuery('');
-    handleSearch(e, true);
-  };
-
   return (
-    <div className="space-y-4 mb-6">
-      <form onSubmit={handleSearch} className="flex gap-2">
-        <div className="relative flex-1">
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Buscar productos..."
-            className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#3665f3] pr-10"
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              onClick={handleClearSearch}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-              aria-label="Borrar búsqueda"
-            >
-              <X className="w-4" />
-            </button>
-          )}
-        </div>
-        <button
-          type="submit"
-          className="px-6 py-2 rounded-full bg-[#3665f3] text-white font-medium hover:bg-[#2a4fc4] transition-colors"
-        >
-          Buscar
-        </button>
-      </form>
-
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div className="flex flex-wrap gap-2">
-          {filterOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => handleFilterChange(option.value)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                currentType === option.value
-                  ? 'bg-primary text-white'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center gap-4 ml-auto">
-          <span className="text-sm font-medium text-gray-700">Ordenar por:</span>
+    <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row gap-4">
+        <form onSubmit={handleSearch} className="flex-1">
+          <div className="relative">
+            <input
+              type="text"
+              name="search"
+              placeholder="Buscar productos..."
+              defaultValue={searchParams.get('search') || ''}
+              className="w-full px-4 py-2 pl-10 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-[#CFCFCF] placeholder-zinc-500 focus:outline-none focus:border-[#FF8806] transition-colors"
+            />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4 h-4" />
+          </div>
+        </form>
+        <div className="flex-shrink-0">
           <select
-            value={currentSortOptions.order}
-            onChange={(e) => handleSortChange(e.target.value as SortOrder)}
-            className="px-3 py-2 rounded-md border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            value={`${sortOptions.field}-${sortOptions.order}`}
+            onChange={handleSortChange}
+            className="w-full sm:w-auto px-4 py-2 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-900 dark:text-[#CFCFCF] focus:outline-none focus:border-[#FF8806] transition-colors"
           >
-            {sortOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
+            <option value="price-desc">Mayor Precio</option>
+            <option value="price-asc">Menor Precio</option>
+            <option value="created_at-desc">Más recientes</option>
+            <option value="created_at-asc">Más antiguos</option>
           </select>
         </div>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {PRODUCT_TYPES.map(({ value, label }) => (
+          <button
+            key={value}
+            onClick={() => handleTypeChange(value)}
+            className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              currentType === value
+                ? 'bg-[#FF8806] text-black'
+                : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-[#CFCFCF] hover:bg-zinc-200 dark:hover:bg-zinc-700'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
     </div>
   );

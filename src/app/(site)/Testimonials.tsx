@@ -15,27 +15,27 @@ interface Testimonial {
 }
 
 const testimonials: Testimonial[] = [
-  {
-    name: "María G.",
-    rating: 5,
-    text: "Excelente servicio y atención. La laptop que compré funciona perfectamente y el proceso de compra fue muy sencillo. ¡Recomiendo totalmente!",
-    role: "Estudiante",
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
-  },
-  {
-    name: "Carlos R.",
-    rating: 5,
-    text: "Increíble la calidad de las laptops reacondicionadas. Compré una Lenovo y parece nueva. El soporte post-venta es excelente.",
-    role: "Desarrollador",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
-  },
-  {
-    name: "Laura M.",
-    rating: 5,
-    text: "La mejor decisión que pude tomar. La laptop que compré superó mis expectativas y el precio fue muy accesible. ¡Gracias RevivoX!",
-    role: "Diseñadora",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
-  },
+  // {
+  //   name: "María G.",
+  //   rating: 5,
+  //   text: "Excelente servicio y atención. La laptop que compré funciona perfectamente y el proceso de compra fue muy sencillo. ¡Recomiendo totalmente!",
+  //   role: "Estudiante",
+  //   avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+  // },
+  // {
+  //   name: "Carlos R.",
+  //   rating: 5,
+  //   text: "Increíble la calidad de las laptops reacondicionadas. Compré una Lenovo y parece nueva. El soporte post-venta es excelente.",
+  //   role: "Desarrollador",
+  //   avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+  // },
+  // {
+  //   name: "Laura M.",
+  //   rating: 5,
+  //   text: "La mejor decisión que pude tomar. La laptop que compré superó mis expectativas y el precio fue muy accesible. ¡Gracias RevivoX!",
+  //   role: "Diseñadora",
+  //   avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80",
+  // },
 ];
 
 /**

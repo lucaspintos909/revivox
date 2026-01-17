@@ -17,27 +17,27 @@ const faqs: FAQItem[] = [
   {
     question: "¿Qué garantía ofrecen en las laptops?",
     answer:
-      "Todas nuestras laptops reacondicionadas incluyen una garantía de 6 meses. Durante este período, cubrimos cualquier defecto de fabricación o fallo en el funcionamiento normal del dispositivo.",
+    "Todas nuestras laptops reacondicionadas incluyen una garantía de 6 meses. Durante este período, cubrimos cualquier defecto de fabricación o fallo en el funcionamiento normal del dispositivo.",
   },
   {
     question: "¿Cómo es el proceso de compra?",
     answer:
-      "El proceso es simple: 1) Explora nuestro catálogo de laptops disponibles, 2) Selecciona el modelo que mejor se adapte a tus necesidades, 3) Realiza el pago de forma segura, 4) Recibe tu laptop en perfecto estado y lista para usar.",
+      "El proceso es simple: 1) Explora nuestro catálogo de laptops disponibles, 2) Selecciona el modelo que mejor se adapte a tus necesidades, 3) Realiza el pago de forma segura, 4) Recibe tu laptop en perfecto estado y lista para usar. Si no te sentis comodo con esta modalidad, nos podes escribir Whatsapp o Instagram",
   },
   {
     question: "¿Puedo probar la laptop antes de comprarla?",
     answer:
-      "Sí, ofrecemos la posibilidad de probar la laptop en nuestro local antes de realizar la compra. Nuestro equipo estará disponible para resolver cualquier duda y demostrar el funcionamiento del dispositivo.",
+      "Sí, ofrecemos la posibilidad de probar la laptop antes de realizar la compra, tambien la puede venir a revisar un tecnico de tu confianza! Nuestro equipo estará disponible para resolver cualquier duda y demostrar el funcionamiento del dispositivo.",
   },
   {
     question: "¿Qué métodos de pago aceptan?",
     answer:
-      "Aceptamos múltiples métodos de pago: efectivo, transferencia bancaria, tarjetas de crédito y débito. También ofrecemos planes de financiación para que puedas adquirir tu laptop en cuotas.",
+      "Aceptamos múltiples métodos de pago: efectivo, transferencia bancaria, mercado pago.",
   },
   {
     question: "¿Hacen envíos a todo el país?",
     answer:
-      "Sí, realizamos envíos a todo Uruguay. El costo del envío varía según la ubicación y se calcula al momento de la compra. Para Montevideo, ofrecemos entrega sin cargo en compras superiores a $20,000.",
+      "Sí, realizamos envíos a todo Uruguay. El costo del envío varía según la ubicación y se calcula al momento de la compra. Para Montevideo, ofrecemos entrega sin cargo.",
   },
 ];
 

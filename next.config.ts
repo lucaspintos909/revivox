@@ -36,6 +36,26 @@ const nextConfig = {
         hostname: 'i.postimg.cc',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'mobile-pc-medics.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.avg.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd3t0tbmlie281e.cloudfront.net',
+        pathname: '/**',
+      },
     ],
   },
   async headers() {

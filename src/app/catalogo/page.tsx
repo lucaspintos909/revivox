@@ -72,22 +72,26 @@ export default async function CatalogPage({
   return (
     <>
       <Navigation variant="catalog" />
-      <div className="container mx-auto px-4 py-8 mt-16">
-        <h1 className="text-3xl font-bold mb-8">Nuestros productos y servicios</h1>
-        <ProductFilters 
-          currentType={type}
-          sortOptions={{ field: sortField, order: sortOrder }}
-        />
-        
-        <Suspense fallback={<CatalogSkeleton />}>
-          <CatalogProducts 
-            type={type} 
-            page={page} 
-            sortOptions={{ field: sortField, order: sortOrder }}
-            searchQuery={search}
-            itemsPerPage={itemsPerPage}
-          />
-        </Suspense>
+      <div className="min-h-screen bg-white dark:bg-[#212121] text-zinc-900 dark:text-[#CFCFCF]">
+        <div className="container mx-auto px-4 py-8 mt-16">
+          <h1 className="text-4xl font-bold mb-8 text-zinc-900 dark:text-[#CFCFCF]">Nuestros productos y servicios</h1>
+          <div className="mb-8">
+            <ProductFilters 
+              currentType={type}
+              sortOptions={{ field: sortField, order: sortOrder }}
+            />
+          </div>
+          
+          <Suspense fallback={<CatalogSkeleton />}>
+            <CatalogProducts 
+              type={type} 
+              page={page} 
+              sortOptions={{ field: sortField, order: sortOrder }}
+              searchQuery={search}
+              itemsPerPage={itemsPerPage}
+            />
+          </Suspense>
+        </div>
       </div>
     </>
   );

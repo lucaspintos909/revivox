@@ -6,7 +6,9 @@ const TEAM_MEMBERS = {
   lucas: 'Lucas'
 } as const;
 
+
 const SOCIAL_LINKS = {
+  /**
   linkedin: {
     href: '#',
     label: 'LinkedIn'
@@ -15,6 +17,7 @@ const SOCIAL_LINKS = {
     href: '#',
     label: 'Twitter'
   }
+  */
 } as const;
 
 const AboutUs = () => {
@@ -51,7 +54,7 @@ const AboutUs = () => {
             Nuestro objetivo es reducir el impacto ambiental de la tecnología, ofreciendo equipos reacondicionados de alta calidad que se adaptan a las necesidades actuales.
           </p>
         </div>
-
+        {/*
         <div className="flex justify-center gap-8">
           {Object.values(SOCIAL_LINKS).map(({ href, label }) => (
             <Link
@@ -63,6 +66,7 @@ const AboutUs = () => {
             </Link>
           ))}
         </div>
+        */}
 
         <div className="mt-12 text-center">
           <p className="text-gray-300 max-w-2xl mx-auto">

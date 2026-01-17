@@ -26,8 +26,8 @@ const CTA = memo(() => {
         <Link
           href="/catalogo?type=laptops"
           className={cn(
-            "inline-flex items-center gap-2 rounded-lg bg-[#FFB800] px-6 py-3 text-base font-medium text-black",
-            "transition-colors hover:bg-[#FFB800]/90 focus:outline-none focus:ring-2 focus:ring-[#FFB800] focus:ring-offset-2 focus:ring-offset-[#0F0F0F]"
+            "inline-flex items-center gap-2 rounded-lg bg-[#FF8806] px-6 py-3 text-base font-medium text-black",
+            "transition-colors hover:bg-[#FF8806]/90 focus:outline-none focus:ring-2 focus:ring-[#FFB800] focus:ring-offset-2 focus:ring-offset-[#0F0F0F]"
           )}
           aria-label="Ver laptops disponibles"
         >

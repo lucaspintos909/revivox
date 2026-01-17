@@ -21,7 +21,7 @@ export default function Home() {
       <MakerIntro />
       <MissionVision />
       <FAQ />
-      <TestimonialsPage />
+      {/* <TestimonialsPage /> */}
       <CTA />
       <Footer />
     </div>

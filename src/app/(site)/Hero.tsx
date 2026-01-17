@@ -103,7 +103,7 @@ const HeroSection = () => {
               className="inline-flex w-8/12 mx-auto sm:w-auto items-center justify-center gap-2 bg-transparent border border-[#FF8806] hover:border-[#321B01] hover:bg-[#321B01] text-white px-8 py-2 rounded-xl font-medium text-lg transition-colors duration-300"
               aria-label="Contactar con RevivoX"
             >
-              Escríbenos &nbsp;
+              Seguinos &nbsp;
               <InstagramIcon />
             </Link>
           </div>
@@ -154,11 +154,13 @@ const HeroSection = () => {
                 ¿No te convence?
               </p>
               <Link
-                href="#wall-of-love"
+                href="https://wa.me/59899619674"
                 className="w-full bg-[#FF8806] hover:bg-[#ffa039] transition-colors text-black font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2"
-                aria-label="Ver reseñas de clientes"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contactar por WhatsApp"
               >
-                <span aria-hidden="true">⚡</span> Ver reseñas de nuestros clientes
+                <span aria-hidden="true">Contactar por WhatsApp</span> 💬
               </Link>
               <p className="text-center text-zinc-500 text-sm mt-4">
                 Compra con la tranquilidad que mereces.

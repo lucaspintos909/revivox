@@ -3,10 +3,10 @@
 import { Product, ProductType } from '../types';
 import ProductCard from './ProductCard';
 import { AnimatePresence } from 'framer-motion';
-import Pagination from './Pagination';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FadeIn, SlideUp } from './AnimatedContainer';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface ProductListProps {
   products: Product[];
@@ -33,52 +33,66 @@ export default function ProductList({ products, type, page, totalProducts, items
     router.push(`/catalogo?${params.toString()}`);
   };
 
-  const handleItemsPerPageChange = (newItems: number) => {
+  const handleItemsPerPageChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setIsLoading(true);
     const params = new URLSearchParams(searchParams.toString());
-    params.set('itemsPerPage', String(newItems));
+    params.set('itemsPerPage', event.target.value);
     params.set('page', '0'); // reset page
     router.push(`/catalogo?${params.toString()}`);
   };
 
+  const showPagination = totalPages > 1;
+
   return (
-    <div className="min-h-[60vh] flex flex-col justify-between">
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <FadeIn key="loading" className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[...Array(itemsPerPage)].map((_, index) => (
-              <SlideUp
-                key={`loading-${index}`}
-                className="bg-gray-200 rounded-lg h-[400px] animate-pulse"
-              >
-                <div />
-              </SlideUp>
-            ))}
-          </FadeIn>
-        ) : (
-          <FadeIn key={`products-${type}-${page}`} className="grid grid-cols-1 xl:grid-cols-2 gap-6">
-            {products.map((product, index) => (
-              <SlideUp key={product.id} delay={index * 0.05}>
-                <ProductCard product={product} />
-              </SlideUp>
-            ))}
-          </FadeIn>
-        )}
-      </AnimatePresence>
+    <div className="space-y-8">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
 
-      {products.length === 0 && !isLoading && (
-        <FadeIn className="text-center py-12">
-          <p className="text-gray-500">No se encontraron productos</p>
-        </FadeIn>
+      {showPagination && (
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-zinc-700">
+          <div className="flex items-center gap-2 text-[#CFCFCF]">
+            <span>Items por página:</span>
+            <select
+              value={itemsPerPage}
+              onChange={handleItemsPerPageChange}
+              className="bg-zinc-800 border border-zinc-700 rounded-lg px-2 py-1 text-[#CFCFCF] focus:outline-none focus:border-[#FF8806] transition-colors"
+            >
+              <option value="12">12</option>
+              <option value="24">24</option>
+              <option value="36">36</option>
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => handlePageChange(page - 1)}
+              disabled={page === 0}
+              className="p-2 text-[#CFCFCF] hover:text-[#FF8806] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              aria-label="Página anterior"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-1">
+              <span className="text-[#CFCFCF]">
+                Página {page + 1} de {totalPages}
+              </span>
+            </div>
+
+            <button
+              onClick={() => handlePageChange(page + 1)}
+              disabled={page >= totalPages - 1}
+              className="p-2 text-[#CFCFCF] hover:text-[#FF8806] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              aria-label="Página siguiente"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
       )}
-
-      <Pagination
-        currentPage={page + 1}
-        totalPages={totalPages}
-        itemsPerPage={itemsPerPage}
-        onPageChange={handlePageChange}
-        onItemsPerPageChange={handleItemsPerPageChange}
-      />
     </div>
   );
 } 
