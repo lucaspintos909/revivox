@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import AboutUs from "@/app/(site)/AboutUs";
 import CTA from "@/app/(site)/Cta";
 import FAQ from "@/app/(site)/Faq";
 import Footer from "@/app/(site)/Footer";
@@ -20,7 +19,6 @@ export default function Home() {
       <Navbar />
       <HeroSection />
       <MakerIntro />
-      <AboutUs />
       <MissionVision />
       <FAQ />
       <TestimonialsPage />
